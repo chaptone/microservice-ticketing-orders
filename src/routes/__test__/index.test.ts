@@ -1,21 +1,25 @@
+import mongoose from "mongoose";
 import request from "supertest";
 import { app } from "../../app";
 import { Ticket } from "../../models/ticket";
 
 it("fetch orders for an particular user", async () => {
   const ticket1 = Ticket.build({
+    id: mongoose.Types.ObjectId().toHexString(),
     title: "ticket1",
     price: 20,
   });
   await ticket1.save();
 
   const ticket2 = Ticket.build({
+    id: mongoose.Types.ObjectId().toHexString(),
     title: "ticket2",
     price: 20,
   });
   await ticket2.save();
 
   const ticket3 = Ticket.build({
+    id: mongoose.Types.ObjectId().toHexString(),
     title: "ticket3",
     price: 20,
   });
