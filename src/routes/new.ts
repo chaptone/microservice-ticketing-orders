@@ -7,9 +7,11 @@ import {
   requireAuth,
   validateRequest,
 } from "@rkktickets/common";
+import { natsWrapper } from "../nats-wrapper";
 import { body } from "express-validator";
 import { Ticket } from "../models/ticket";
 import { Order } from "../models/order";
+import { OrderCreatePublisher } from "../events/publisher/order-created-publisher";
 
 const router = express.Router();
 
@@ -49,6 +51,17 @@ router.post(
       ticket,
     });
     await order.save();
+
+    new OrderCreatePublisher(natsWrapper.client).publish({
+      id: order.id,
+      status: order.status,
+      userId: order.userId,
+      expiresAt: order.expiresAt.toISOString(),
+      ticket: {
+        id: ticket.id,
+        price: ticket.price,
+      },
+    });
 
     res.status(201).send(order);
   },
