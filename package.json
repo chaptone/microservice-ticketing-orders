@@ -15,7 +15,7 @@
     ]
   },
   "dependencies": {
-    "@rkktickets/common": "^1.0.8",
+    "@rkktickets/common": "^1.0.9",
     "@types/cookie-session": "^2.0.42",
     "@types/express": "^4.17.11",
     "@types/jsonwebtoken": "^8.5.0",
@@ -26,6 +26,7 @@
     "express-validator": "^6.9.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "5.10.19",
+    "mongoose-update-if-current": "^1.4.0",
     "node-nats-streaming": "^0.3.2",
     "ts-node-dev": "^1.1.1",
     "typescript": "^4.1.3"
